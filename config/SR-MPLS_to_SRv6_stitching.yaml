@@ -1,0 +1,104 @@
+mgmt:
+  ipv4_subnet: 172.16.255.0/26
+
+topology:
+  nodes:
+    CPE1:
+      kind: cisco_xrd
+      image: ios-xr/xrd-control-plane:24.3.2
+      startup-config: config/CPE1.cfg
+    CPE2:
+      kind: cisco_xrd
+      image: ios-xr/xrd-control-plane:24.3.2
+      startup-config: config/CPE2.cfg
+    AL1:
+      kind: cisco_xrd
+      image: ios-xr/xrd-control-plane:24.3.2
+      startup-config: config/AL1.cfg
+    AL2:
+      kind: cisco_xrd
+      image: ios-xr/xrd-control-plane:24.3.2
+      startup-config: config/AL2.cfg
+    GW:
+      kind: cisco_xrd
+      image: ios-xr/xrd-control-plane:24.3.2
+      startup-config: config/GW.cfg
+    RS:
+      kind: cisco_xrd
+      image: ios-xr/xrd-control-plane:24.3.2
+      startup-config: config/RS.cfg
+    DR:
+      kind: cisco_xrd
+      image: ios-xr/xrd-control-plane:24.3.2
+      startup-config: config/DR.cfg  
+    eREF:
+      kind: cisco_xrd
+      image: ios-xr/xrd-control-plane:24.3.2
+      startup-config: config/eREF.cfg 
+    AGG1:
+      kind: cisco_xrd
+      image: ios-xr/xrd-control-plane:24.3.2
+      startup-config: config/AGG1.cfg
+    AGG2:
+      kind: cisco_xrd
+      image: ios-xr/xrd-control-plane:24.3.2
+      startup-config: config/AGG2.cfg
+    iRR6:
+      kind: cisco_xrd
+      image: ios-xr/xrd-control-plane:24.3.2
+      startup-config: config/iRR6.cfg
+    P1L:
+      kind: cisco_xrd
+      image: ios-xr/xrd-control-plane:24.3.2
+      startup-config: config/P1L.cfg
+    P2L:
+      kind: cisco_xrd
+      image: ios-xr/xrd-control-plane:24.3.2
+      startup-config: config/P2L.cfg
+    iRR4:
+      kind: cisco_xrd
+      image: ios-xr/xrd-control-plane:24.3.2
+      startup-config: config/iRR4.cfg
+    P1:
+      kind: cisco_xrd
+      image: ios-xr/xrd-control-plane:24.3.2
+      startup-config: config/P1.cfg
+    P2:
+      kind: cisco_xrd
+      image: ios-xr/xrd-control-plane:24.3.2
+      startup-config: config/P2.cfg
+    BX:
+      kind: cisco_xrd
+      image: ios-xr/xrd-control-plane:24.3.2
+      startup-config: config/BX.cfg 
+    OLT:
+      kind: cisco_xrd
+      image: ios-xr/xrd-control-plane:24.3.2
+      startup-config: config/OLT.cfg 
+ 
+  links:
+    - endpoints: ["CPE1:Gi0-0-0-0", "OLT:Gi0-0-0-2"]
+    - endpoints: ["OLT:Gi0-0-0-0", "AL1:Gi0-0-0-0"]
+    - endpoints: ["OLT:Gi0-0-0-1", "AL2:Gi0-0-0-0"]
+    - endpoints: ["AL1:Gi0-0-0-1", "AGG1:Gi0-0-0-1"]
+    - endpoints: ["AL1:Gi0-0-0-2", "AGG2:Gi0-0-0-2"]
+    - endpoints: ["AL2:Gi0-0-0-2", "AGG1:Gi0-0-0-2"]
+    - endpoints: ["AL2:Gi0-0-0-1", "AGG2:Gi0-0-0-1"]
+    - endpoints: ["AGG1:Gi0-0-0-3", "GW:Gi0-0-0-1"]
+    - endpoints: ["AGG2:Gi0-0-0-3", "GW:Gi0-0-0-0"]
+    - endpoints: ["AGG1:Gi0-0-0-4", "eREF:Gi0-0-0-0"]
+    - endpoints: ["AGG2:Gi0-0-0-4", "RS:Gi0-0-0-0"]
+    - endpoints: ["AGG1:Gi0-0-0-0", "P1:Gi0-0-0-1"]
+    - endpoints: ["AGG2:Gi0-0-0-0", "P2:Gi0-0-0-1"]
+    - endpoints: ["P1:Gi0-0-0-0", "iRR4:Gi0-0-0-0"]
+    - endpoints: ["AGG1:Gi0-0-0-5", "iRR6:Gi0-0-0-0"]
+    - endpoints: ["P1:Gi0-0-0-4", "P2:Gi0-0-0-4"]
+    - endpoints: ["P1:Gi0-0-0-2", "P2L:Gi0-0-0-1"]
+    - endpoints: ["P2:Gi0-0-0-2", "P1L:Gi0-0-0-2"]
+    - endpoints: ["P1:Gi0-0-0-3", "BX:Gi0-0-0-1"]
+    - endpoints: ["P2:Gi0-0-0-3", "BX:Gi0-0-0-0"]
+    - endpoints: ["P1L:Gi0-0-0-0", "P2L:Gi0-0-0-0"]
+    - endpoints: ["P2L:Gi0-0-0-2", "DR:Gi0-0-0-2"]
+    - endpoints: ["P1L:Gi0-0-0-1", "DR:Gi0-0-0-1"]
+    - endpoints: ["DR:Gi0-0-0-0", "CPE2:Gi0-0-0-0"]
+
